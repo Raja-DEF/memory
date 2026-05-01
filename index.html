@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Rabit 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #fff0f5);
+    overflow: hidden;
+}
+
+/* INTRO */
+.intro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg,#ffb6d9,#ffe6f2);
+    z-index: 999;
+}
+
+.intro h1 {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.intro p {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.enter-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4da6;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    color: #ff4da6;
+    font-weight: bold;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100vh;
+    scroll-snap-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.slide img {
+    width: auto;
+    height: auto;
+    max-width: 85%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.caption {
+    position: absolute;
+    bottom: 40px;
+    background: rgba(255,255,255,0.6);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(45deg,#ff4da6,#ff99cc);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0.7; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+.slider::-webkit-scrollbar { display:none; }
+</style>
+</head>
+<body>
+
+<!-- INTRO PAGE -->
+<div class="intro" id="intro">
+    <h1>Untuk Bitaaa 💖</h1>
+    <p>Cemuaa kenangann indahh kitaa adaaa diciniii ✨</p>
+    <button class="enter-btn" onclick="start()">Buka Memory</button>
+</div>
+
+<header>
+    💖 Memory Rabit 💖<br>
+    <small>Swipe ya 👉</small>
+</header>
+
+<audio id="music" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<div class="slider">
+<script>
+for(let i=1;i<=100;i++){
+    document.write(`
+    <div class="slide">
+        <img src="pict${i}.jpg">
+        <div class="caption">Kenangan ke-${i} 💕</div>
+    </div>`);
+}
+</script>
+</div>
+
+<script>
+function toggleMusic() {
+    var music = document.getElementById("music");
+    if (music.paused) music.play(); else music.pause();
+}
+
+function start(){
+    document.getElementById('intro').style.display='none';
+    document.getElementById('music').play();
+}
+
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
